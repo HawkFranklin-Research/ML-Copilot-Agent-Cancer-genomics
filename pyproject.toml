@@ -1,25 +1,33 @@
 [tool.poetry]
 name = "ml-copilot-agent"
-version = "0.1.9"
-description = "\"It is a Machine Learning Copilot Agent that can execute code for end-to-end ML Cycle\""
+version = "0.2.0" # Bump version
+description = "An LLM-powered agent for orchestrating complex ML workflows, demonstrated via HNSCC biomarker discovery." # Updated description
 authors = ["VatsalPatel18 <vatsal1804@gmail.com>"]
-license = "CC-BY-NC-ND-4.0"
+license = "CC-BY-NC-ND-4.0" # Check if this license is still appropriate
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = ">=3.9,<4.0"
-llama-index = "0.11.16"
-llama-index-agent-openai = "0.3.4"
-llama-index-llms-openai = "0.2.11"
-llama-index-tools-code-interpreter = "0.2.0"
-llama-index-llms-huggingface = "0.3.4"
-llama-index-embeddings-huggingface = "0.3.1"
-llama-index-utils-workflow = "0.2.1"
+llama-index = ">=0.11.16" # Use compatible ranges if possible
+llama-index-agent-openai = ">=0.3.4"
+llama-index-llms-openai = ">=0.2.11"
+llama-index-llms-gemini = ">=0.1.8" # Added Gemini support
+llama-index-tools-code-interpreter = ">=0.2.0"
+# Removed huggingface dependencies as they are not used in the current core logic
+# llama-index-llms-huggingface = "0.3.4"
+# llama-index-embeddings-huggingface = "0.3.1"
+# llama-index-utils-workflow = ">=0.2.1" # Workflow core is usually part of llama-index itself now
 matplotlib = ">=3.7.0"
 seaborn = ">=0.10"
 scikit-learn = ">=1.2"
-
+pandas = ">=1.5" # Added pandas explicitly
+lifelines = ">=0.27" # Added lifelines for survival analysis
+ipykernel = ">=6.0.0" # Often needed for notebook environments/code execution tools
+argparse = "*" # Technically built-in, but good practice to note
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+ml-copilot-agent = "ml_copilot_agent.__main__:main" # Define a script entry point
